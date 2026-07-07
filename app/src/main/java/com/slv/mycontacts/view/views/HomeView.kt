@@ -26,7 +26,6 @@ import com.slv.mycontacts.view.components.MyTopBarNavigation
 
 @Composable
 fun HomeView(
-    onOpenDrawer: () -> Unit,
     navigateAddContact: () -> Unit
 ) {
 
@@ -37,7 +36,7 @@ fun HomeView(
             MyTopBarNavigation(
                 title = "Inicio",
                 isHomeScreen = true, // Muestra el icono de menú hamburguesa
-                onNavigateClick = onOpenDrawer // Abre el menú
+                onNavigateClick = {} // Abre el menú
             )
         },
         floatingActionButton = {
