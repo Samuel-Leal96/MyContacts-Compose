@@ -1,15 +1,25 @@
 package com.slv.mycontacts.view.views
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import com.slv.mycontacts.view.components.MyTopBarNavigation
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import com.slv.mycontacts.view.components.MyTopBarNavigation
 
 @Composable
 fun HomeView(
@@ -17,6 +27,7 @@ fun HomeView(
     navigateAddContact: () -> Unit
 ) {
 
+    var tf_contact by remember { mutableStateOf("") }
 
     Scaffold(
         topBar = {
@@ -27,30 +38,14 @@ fun HomeView(
             )
         }
     ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .padding(innerPadding)
-                .background(Color.Red)
-                .fillMaxSize()
-        )
+        Column(modifier = Modifier.padding(innerPadding).padding(horizontal = 16.dp)) {
+            OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
+                value = tf_contact,
+                onValueChange = { tf_contact = it },
+                leadingIcon = { Icon(Icons.Default.Search, contentDescription = null) },
+                label = { Text("Buscar contacto") }
+            )
+        }
     }
 }
-
-//@Composable
-//fun HomeView(navigateAddContact: () -> Unit) {
-//    Column(
-//        modifier = Modifier
-//            .fillMaxSize()
-//            .background(Color.Cyan),
-//        horizontalAlignment = Alignment.CenterHorizontally
-//    ) {
-//        Text(
-//            "Home view", fontSize = 20.sp, modifier = Modifier
-//                .padding(16.dp)
-//        )
-//
-//        Button(onClick = {navigateAddContact()}) {
-//            Text("Add contact")
-//        }
-//    }
-//}
