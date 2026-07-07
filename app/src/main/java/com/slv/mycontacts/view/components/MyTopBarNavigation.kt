@@ -21,12 +21,13 @@ fun MyTopBarNavigation(
     CenterAlignedTopAppBar(
         title = { Text(title) },
         navigationIcon = {
-            IconButton(onClick = onNavigateClick) {
-                Icon(
-                    imageVector = if (isHomeScreen) Icons.Default.Menu
-                    else Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Localized description"
-                )
+            if (!isHomeScreen) {
+                IconButton(onClick = onNavigateClick) {
+                    Icon(
+                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                        contentDescription = "Back",
+                    )
+                }
             }
         },
     )
